@@ -4,7 +4,9 @@ public class GamblingSimulation {
     static final int BET = 1;             //player bets 1 for every single match
     static int accountBalance = 100;      //palyer account balance
     static int numberOfWinsDay =0;
-    static int getNumberOfLossDay=0;
+    static int numberOfLossDay=0;
+    static int numberOfWinsMonth=0;
+    static int numberOfLossMonth=0;
 
     //uc-2 as the gambler plays with 1 either he wins 1 or he losses 1 .
     public static void winOrLoose() {
@@ -13,11 +15,13 @@ public class GamblingSimulation {
         // by using switch case
         switch (randomCheck) {
             case 1:
+                numberOfWinsMonth++;
                 numberOfWinsDay++;
                 accountBalance += BET;
                 break;
             default:
-                getNumberOfLossDay++;
+                numberOfLossMonth++;
+                numberOfLossDay++;
                 accountBalance -= BET;
         }
     }
@@ -39,19 +43,21 @@ public class GamblingSimulation {
         }
         System.out.println("GAMBLERS ACCOUNT BALANCE IS : " +accountBalance);
         System.out.println("NUMBER OF WINS IN A DAY IS : " + numberOfWinsDay);
-        System.out.println("NUMBER OF LOSSES IN A DAY IS : "+getNumberOfLossDay);
+        System.out.println("NUMBER OF LOSSES IN A DAY IS : "+numberOfLossDay);
         //we are making wins and loss in day =0 and accouunt balence =100; for a new day
         numberOfWinsDay=0;
-        getNumberOfLossDay=0;
+        numberOfLossDay=0;
         accountBalance=100;
 
     }
-    //uc-4 after 20 days of bet  wons and loss
+    //uc-4 after onr month of bet  wons and loss
     public static void gamblingForMonth(){
-        for (int day=1;day<20;day++){
+        for (int day=1;day<30;day++){
             System.out.println("DAY:"+day+":-");
             gambling();
         }
+        System.out.println("TOTAL NUMBER OF WINS IN A MONTH : "+numberOfWinsMonth);
+        System.out.println("TOTAL NUMBER OF LOSS IN A MONTH : "+numberOfLossMonth);
     }
 
     public static void main(String[] args) {
