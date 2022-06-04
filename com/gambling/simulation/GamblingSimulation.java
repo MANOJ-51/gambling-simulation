@@ -21,10 +21,28 @@ public class GamblingSimulation {
         }
     }
 
+    //uc-3 as the gambler wins 50 of stack would resign for the day
+    public static void gambling() {
+        int temporaryBalance = accountBalance;     //creating temporary balance is to hold the account balance=100;
+        int fiftyPercent = (50 / 100) * temporaryBalance; //calculating fifty percent
+
+        //we are using while loop to continue looping until we get fifty percent of stake
+        while (accountBalance <= (accountBalance + fiftyPercent) ||
+                accountBalance >= (accountBalance - fiftyPercent)) {
+            winOrLoose();  //calling player win or loss method
+
+            //we are using if statement to stop the loop when player gets 150 or 50
+            if (accountBalance == 150 || accountBalance == 50) {
+                break;
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
         //displaying welcome message
         System.out.println("WELCOME TO GAMBLING SIMULATION PROGRAM");
-        winOrLoose();
+        gambling();
     }
 
 }
