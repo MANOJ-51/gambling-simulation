@@ -15,6 +15,9 @@ public class GamblingSimulation {
     static int luckyDAY;
     static int unluckyDay;
 
+    //uc7 temporary variable
+    static int profit = 0;
+
     //uc-2 as the gambler plays with 1 either he wins 1 or he losses 1 .
     public static void winOrLoose() {
         //we use random function to check win or losse
@@ -54,6 +57,12 @@ public class GamblingSimulation {
 
         luckyAndUnlucky(); //calling uc-6 here
 
+        if (accountBalance == 150) {
+            profit += 50;
+        } else if (accountBalance == 50) {
+            profit -= 50;
+        }
+
         //we are making wins and loss in day =0 and accouunt balence =100; for a new day
         numberOfWinsDay = 0;
         numberOfLossDay = 0;
@@ -83,6 +92,13 @@ public class GamblingSimulation {
             previousDayLoss = numberOfLossDay;
             unluckyDay = day;
         }
+    }
+
+    //uc7
+    public static void gamblerDecision() {
+        do {
+            gamblingForMonth();    //this loop will continue untill the gambleer profit becomes < 0
+        } while (profit > 0);      //gambler stops playing when he loss his investment money
     }
 
     public static void main(String[] args) {
